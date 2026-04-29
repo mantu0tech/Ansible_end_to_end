@@ -18,3 +18,12 @@ ansible-playbook playbook.yml --become
 run on a particular host or group 
 
 ansible-playbook playbook.yml -l webservers
+
+ansible all -a "sudo apt update "
+
+ansible all -a "apt install nginx" --become
+
+ansible all -a "apt install nginx" --become -v # for verbose 
+for standart ouput 
+
+ansible all -m setup | grep "distr"
