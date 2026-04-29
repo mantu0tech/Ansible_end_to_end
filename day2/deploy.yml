@@ -1,0 +1,19 @@
+- hosts: dev
+  become: yes
+  tasks: 
+    - name: install gnix 
+      apt: 
+        name: nginx 
+        state: present
+
+    - name: start 
+      service:
+        name: nginx
+        state: started 
+
+    - name: copy the file 
+      copy: 
+        content: "<h1>this is my webpage</h1>" 
+        dest: /var/www/html/index.html
+
+          

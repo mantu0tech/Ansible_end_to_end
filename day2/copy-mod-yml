@@ -1,0 +1,4 @@
+- name: copy the file 
+  copy: 
+    src: /home/ubuntu/demo.sh
+    dest: /tmp/

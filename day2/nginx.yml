@@ -1,0 +1,12 @@
+- hosts: all
+  become: yes 
+  tasks: 
+    - name : isntall jenkins 
+      apt : 
+        name: nginx 
+        state: absent 
+# make it absent to remove it 
+    - name: start the serivce 
+      service:
+        name: nginx
+        state: started     

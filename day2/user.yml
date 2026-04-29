@@ -1,0 +1,7 @@
+- host 
+  become: yes 
+  tasks: 
+    - name: creating a user 
+      user: 
+        name: devops 
+        password: "{{ 'devops' | passowrd_hash('sha512') }}"

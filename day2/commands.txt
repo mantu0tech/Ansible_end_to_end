@@ -1,0 +1,20 @@
+ansible all -m apt -a "name=nginx state=present" --become
+\
+
+ansible all -m copy -a "src=file.txt dest=/tmp/file.txt"
+
+ansible all -m file -a "path=/opt/test state=directory"
+
+ansible all -m shell -a "uptime"
+
+ansible-playbook playbook.yml
+
+
+if sudo access is needed 
+
+ansible-playbook playbook.yml --become
+
+
+run on a particular host or group 
+
+ansible-playbook playbook.yml -l webservers
