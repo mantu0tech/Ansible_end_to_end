@@ -1,6 +1,17 @@
 on your master 
-pip install boto boto3 botocore
-ansible-galaxy collection install amazon.aws
+in case of any error 
+sudo add-apt-repository --remove ppa:ansible/ansible
+
+
+sudo apt update && sudo apt upgrade -y
+sudo apt install python3-venv -y
+python3 -m venv myenv
+source myenv/bin/activate
+pip install boto3 botocore
+
+and here you have everything 
+now lets ru nthe things 
+insted of addind the acceess key attach the ima role here
 
 Step 2: Configure AWS Credentials
 

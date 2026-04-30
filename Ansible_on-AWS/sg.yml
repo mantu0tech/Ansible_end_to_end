@@ -1,53 +1,22 @@
-- name: Create AWS Infrastructure
+- name: Simple AWS ec2
   hosts: localhost
-  connection: local
-  gather_facts: no
 
   vars:
-    region: ap-south-1
-    key_name: my-key
-    instance_type: t2.micro
-    image_id: ami-0f58b397bc5c1f2e8   # Example Amazon Linux (update if needed)
-    bucket_name: my-ansible-bucket-12345
+    region: us-east-1
+    sg_name: my-sg
+    vpc_id: vpc-0e91b85f039bf4c2d
 
   tasks:
-
-    # 🔹 1. Create Security Group
-    - name: Create security group
-      amazon.aws.ec2_security_group:
-        name: my-sg
-        description: Allow SSH and HTTP
+    - name: Create Security Group
+      amazon.aws.ec2_group:
+        name: "{{ sg_name }}"
+        description: simple sg
         region: "{{ region }}"
+        vpc_id: "{{ vpc_id }}"
         rules:
           - proto: tcp
-            ports:
-              - 22
-              - 80
+            ports: [22]
             cidr_ip: 0.0.0.0/0
-        state: present
-      register: sg_output
-
-    # 🔹 2. Create EC2 Instance
-    - name: Launch EC2 instance
-      amazon.aws.ec2_instance:
-        name: my-ec2
-        key_name: "{{ key_name }}"
-        instance_type: "{{ instance_type }}"
-        image_id: "{{ image_id }}"
-        wait: yes
-        region: "{{ region }}"
-        security_groups:
-          - my-sg
-      register: ec2_output
-
-    # 🔹 3. Create S3 Bucket
-    - name: Create S3 bucket
-      amazon.aws.s3_bucket:
-        name: "{{ bucket_name }}"
-        region: "{{ region }}"
-        state: present
-
-    # 🔹 4. Show EC2 Public IP
-    - name: Show EC2 IP
-      debug:
-        msg: "{{ ec2_output.instances[0].public_ip_address }}"
+          - proto: tcp
+            ports: [80]
+            cidr_ip: 0.0.0.0/0

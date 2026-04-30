@@ -1,27 +1,24 @@
-- name: Delete AWS Infrastructure
+- name: Simple AWS ec2
   hosts: localhost
-  connection: local
-  gather_facts: no
 
   vars:
-    region: ap-south-1
-    bucket_name: my-ansible-bucket-12345
+    region: us-east-1
+    instance_type: t3.micro
+    ami_id: ami-091138d0f0d41ff90
+    key_name: docker
+    subnet_id: subnet-0117c966b2be2f4bf
+    sg_id: sg-032cbb6d1945436ac
 
   tasks:
-
-    - name: Delete EC2 instance
+    - name: Launch EC2
       amazon.aws.ec2_instance:
         name: my-ec2
-        state: absent
+        instance_type: "{{ instance_type }}"
+        image_id: "{{ ami_id }}"
+        key_name: "{{ key_name }}"
         region: "{{ region }}"
-
-    - name: Delete S3 bucket
-      amazon.aws.s3_bucket:
-        name: "{{ bucket_name }}"
+        vpc_subnet_id: "{{ subnet_id }}"
+        security_group: "{{ sg_id }}"
+        count: 1
+        wait: yes
         state: absent
-
-    - name: Delete security group
-      amazon.aws.ec2_security_group:
-        name: my-sg
-        state: absent
-        region: "{{ region }}"
