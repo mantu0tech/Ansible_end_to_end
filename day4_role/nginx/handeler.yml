@@ -1,0 +1,5 @@
+- name: starting the serive 
+  service: 
+    name: "{{ app }}"
+    state: started 
+  become: yes   

@@ -1,0 +1,5 @@
+- name: runnign the role 
+  hosts : all
+  become: yes
+  roles: 
+   - nginx

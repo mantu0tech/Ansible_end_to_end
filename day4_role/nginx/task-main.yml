@@ -1,0 +1,19 @@
+- name: update system
+  apt: 
+    name: "*"
+    state: latest
+
+- name: install docerk
+  apt: 
+    name: "{{ app }}"
+    state: present   
+
+ # create a index.html file inside your directoru of files onyl
+- name: copy the file
+  ansible.builtin.copy:
+    src: index.html
+    dest: /var/www/html/index.html
+    owner: root
+    group: root
+    mode: '0644'
+       

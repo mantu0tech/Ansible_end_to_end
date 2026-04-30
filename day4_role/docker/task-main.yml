@@ -6,12 +6,12 @@
 - name: install docerk
   apt: 
     name: docker.io
-    state: latest    
+    state: present   
 
 - name: start docerk
   ansible.builtin.user:
     name: "{{ docker_users }}"
-    group: docker 
+    groups: docker 
     append: true # these will ad the user in your group   
 
 

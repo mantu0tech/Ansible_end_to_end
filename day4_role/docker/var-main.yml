@@ -1,4 +1,3 @@
-docker_users:
-  - ubuntu
+docker_users: ubuntu
 
 doc: docker.io  
