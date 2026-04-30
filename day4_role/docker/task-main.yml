@@ -1,0 +1,20 @@
+- name: update system
+  apt: 
+    name: "*"
+    state: latest
+
+- name: install docerk
+  apt: 
+    name: docker.io
+    state: latest    
+
+- name: start docerk
+  ansible.builtin.user:
+    name: "{{ docker_users }}"
+    group: docker 
+    append: true # these will ad the user in your group   
+
+
+- name:  Print the docker verion 
+  command: docker --version
+       

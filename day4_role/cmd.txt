@@ -1,0 +1,21 @@
+to create a ansible playbook package 
+using ansible  galaxy to create roles 
+
+using these website we ca nget the more roles 
+https://galaxy.ansible.com/ui/standalone/roles/
+
+ansible-galaxy init role/docker
+
+ansible-galaxy init role/nginx 
+
+ansible-galaxy init mantu/nginx
+
+ansible-galaxy role install cornelcristea.nextcloud
+
+ansible-galaxy role init cornelcristea.nextcloud
+
+role package manager for ansible 
+
+sudo apt install tree 
+
+how to use roles 

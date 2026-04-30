@@ -19,3 +19,12 @@ run on a particular host or group
 
 ansible-playbook playbook.yml -l dev
 
+
+ansible all -a "sudo apt update "
+
+ansible all -a "apt install nginx" --become
+
+ansible all -a "apt install nginx" --become -v # for verbose 
+for standart ouput 
+
+ansible all -m setup | grep "distr"

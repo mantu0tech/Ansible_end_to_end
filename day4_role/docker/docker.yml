@@ -1,0 +1,6 @@
+- name: install dcoker on all 
+  hosts: all
+  become: yes
+  roles:
+   - docker
+   
