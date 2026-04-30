@@ -1,0 +1,27 @@
+- name: Delete AWS Infrastructure
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  vars:
+    region: ap-south-1
+    bucket_name: my-ansible-bucket-12345
+
+  tasks:
+
+    - name: Delete EC2 instance
+      amazon.aws.ec2_instance:
+        name: my-ec2
+        state: absent
+        region: "{{ region }}"
+
+    - name: Delete S3 bucket
+      amazon.aws.s3_bucket:
+        name: "{{ bucket_name }}"
+        state: absent
+
+    - name: Delete security group
+      amazon.aws.ec2_security_group:
+        name: my-sg
+        state: absent
+        region: "{{ region }}"

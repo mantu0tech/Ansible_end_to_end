@@ -1,0 +1,16 @@
+on your master 
+pip install boto boto3 botocore
+ansible-galaxy collection install amazon.aws
+
+Step 2: Configure AWS Credentials
+
+Run:
+
+aws configure 
+Access Key
+Secret Key
+Region (e.g. ap-south-1)
+
+mkdir aws-ansible
+cd aws-ansible
+touch playbook.yml
