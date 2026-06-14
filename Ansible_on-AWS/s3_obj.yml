@@ -1,0 +1,25 @@
+ubuntu@ip-172-31-26-3:~/playbook$ cat s3.yml
+- name: creating a buck
+  become: yes
+  hosts: localhost
+  vars:
+    region: ap-south-1
+    buck_name: my-buck-ansible-automate
+  tasks:
+   - name: buck
+     amazon.aws.s3_bucket:
+       name:  "{{ buck_name }}"
+       region:  "{{ region }}"
+       state:  present
+   - name: adding the file
+     amazon.aws.s3_object:
+       bucket: "{{ buck_name }}"
+       object: userdata.txt
+       src: /etc/passwd
+       mode: put
+   - name: adding the file
+     amazon.aws.s3_object:
+       bucket: "{{ buck_name }}"
+       object: demo.txt
+       content: "this is my testing file "
+       mode: put
